@@ -18,12 +18,13 @@ class TakeSnapShot(BasePage):
         let hello = setInterval(()=>{
         let isSticky = document.querySelector('[class*="%s"]');
             if (isSticky){
+                 console.log('found a hidden')
                  isSticky.style.visibility = 'hidden'
                  clearInterval(hello)
             }
         },1000)
         """ % self.generate_target(network)
-
+        print(script)
         self.driver.execute_script(script)
         ob = Screenshot_Clipping.Screenshot()
         img_url = ob.full_Screenshot(
@@ -38,7 +39,7 @@ class TakeSnapShot(BasePage):
             2: 'ut-hero-passed',
             3: 'sticky',
         }
-        return switcher.get(network, '.d')
+        return switcher.get(int(network), '.d')
 
     def get_save_dir(self, network):
         dir = os.path.join(os.getcwd(), network)

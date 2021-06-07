@@ -16,19 +16,12 @@ class PythonOrgSearch(unittest.TestCase):
         options.add_argument("--start-maximized")
         # options.add_experimental_option("detach", True)
         self.driver = webdriver.Chrome(chrome_options=options, executable_path='/home/rifat/chromedriver')
-        self.driver.get("http://digitalcreative.bk.toprankon.com/")
+        self.driver.get("http://agency.bk.toprankon.com/")
 
     # start seach in medex
     def test_search_in_medex(self):
-        with open('demos.csv') as csv_file:
-            csv_reader = csv.reader(csv_file, delimiter=',')
-            line_count = 0
-            for row in csv_reader:
-                line_count += 1
-                print(row[5])
-                # snap = TakeSnapShot(self.driver)
-                # snap.take_snap(row[5], row[2])
-                print('image saved')
+        snap = TakeSnapShot(self.driver)
+        snap.take_snap('2', 'agency.bk.toprankon.com')
 
     # driver down
     def tearDown(self):
