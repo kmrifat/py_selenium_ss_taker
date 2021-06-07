@@ -16,7 +16,7 @@ class TakeSnapShot(BasePage):
         WebDriverWait(self.driver, 10)  # sleep a bit
         script = """
         let hello = setInterval(()=>{
-        let isSticky = document.querySelector('%s');
+        let isSticky = document.querySelector('[class*="%s"]');
             if (isSticky){
                  isSticky.style.visibility = 'hidden'
                  clearInterval(hello)
@@ -34,11 +34,11 @@ class TakeSnapShot(BasePage):
 
     def generate_target(self, network):
         switcher = {
-            1: '.is-sticky',
-            2: '.ut-hero-passed',
-            3: '.sticky',
+            1: 'is-sticky',
+            2: 'ut-hero-passed',
+            3: 'sticky',
         }
-        return switcher.get(network, '.is-sticky')
+        return switcher.get(network, '.d')
 
     def get_save_dir(self, network):
         dir = os.path.join(os.getcwd(), network)
